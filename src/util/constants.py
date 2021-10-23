@@ -1,0 +1,12 @@
+INPUT_FILE = 'resources/input.txt'
+SUCCESS_STATUS = 'SUCCESS'
+FAILURE_STATUS = 'FAILURE'
+INPUT_FORMAT_ERROR = 'Wrong Input Format'
+CMD_TYPE = 'cmdType'
+LOAN_KEYS = ['bankName','userName','principal','years','rate']
+PAYMENT_KEYS = ['bankName','userName','amount','emi_no']
+BALANCE_KEYS = ['bankName','userName','emi_no']
+LOAN_ALREADY_IN_THE_BANK = 'Already has loan from the requested Bank'
+PAYMENT_BANK_NOT_FOUND = 'Bank not in list'
+PAYMENT_USER_NOT_FOUND = 'User not in list'
+LOAN_NOT_TAKEN = 'Loan not taken'
