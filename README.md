@@ -6,10 +6,14 @@ Python>=3.5
 install/upgrade pip (python package installer)
 $ python3 -m pip install --upgrade pip
 
+
 Create virtual environment and install dependencies in that:
 $ pip3 install virtualenv
 $ virtualenv -p python3 myenv
 $ source myenv/bin/activate
+
+
+$ cd <path_to_repository_root>/
 $ pip install -r requirements.txt
 ```
 
