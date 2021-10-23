@@ -1,18 +1,21 @@
-Results will be printed on the console
+###  Results will be printed on the console
 
-Dependency installation
+###  Python Requirements
 ```
 Python>=3.5
 install/upgrade pip (python package installer)
 $ python3 -m pip install --upgrade pip
+```
 
-
-Create virtual environment and install dependencies in that:
+### Create virtual environment and activate:
+```
 $ pip3 install virtualenv
 $ virtualenv -p python3 myenv
 $ source myenv/bin/activate
+```
 
-
+### Dependencies Installation in the virtual environment
+```
 $ cd <path_to_repository_root>/
 $ pip install -r requirements.txt
 ```
