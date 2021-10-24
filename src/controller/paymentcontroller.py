@@ -26,6 +26,6 @@ class PaymentController(BaseController):
         amount_paid, emisLeft = loanObject.getBalance(request.emi_no)
         if emisLeft:
             self._storage.addPayment(payment)
-            loanObject.addPayment(request.amount,request.emi_no)
+            loanObject.addPayment(payment.getPaymentID(),request.amount,request.emi_no)
         else:
             print(ZERO_EMIS_LEFT,request.__dict__)
