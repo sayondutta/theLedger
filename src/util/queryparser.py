@@ -13,40 +13,55 @@ class QueryParser:
         storage.addTransaction(self.__transaction)
 
     def __runParser(self, request):
+        '''
+        Evaluates the request string is valid and if valid sent to parse payload to DTO
+        :param request: request string
+        '''
         tokens = request.split()
-        self.__request_type = commandType.__members__.get(tokens[0])
-        if self.__request_type and self.__request_type.value == len(tokens):
-            self.__transaction.update(True, self.__request_type)
+        self.__request_type = commandType.__members__.get(tokens[0])   # type : LOAN/PAYMENT/BALANCE else Null
+        if self.__request_type and self.__request_type.value == len(tokens): # if length matches the desired length of the request_type
             self.__payloadDTO(tokens)
         else:
             raise Exception(INPUT_FORMAT_ERROR,request)
 
     def getType(self):
+        '''
+        :return: <commandType.LOAN: 6> / <commandType.PAYMENT: 5> / <commandType.BALANCE: 4> / False (default)
+        '''
         return self.__request_type
 
     def __payloadDTO(self, tokens):
-        hmap = {'cmdType': self.__request_type}
+        '''
+        :param tokens: tokens of strings (of the actual string request)
+        '''
+        hmap = {'cmdType': self.__request_type}  # changes request to hashmap of {param_value: param_value}
         if self.__request_type == commandType.LOAN:
             for param in range(1, commandType.LOAN.value):
                 hmap[LOAN_KEYS[param - 1]] = tokens[param]
             try:
-                self.__request = LoanPayloadDTO(**hmap)
+                self.__request = LoanPayloadDTO(**hmap)  # convert hashmap to Loan DTO
+                self.__transaction.update(True, self.__request_type)  # update transaction to be valid
             except:
                 raise Exception(INPUT_FORMAT_ERROR,tokens)
         elif self.__request_type == commandType.PAYMENT:
             for param in range(1, commandType.PAYMENT.value):
                 hmap[PAYMENT_KEYS[param - 1]] = tokens[param]
             try:
-                self.__request = PaymentPayloadDTO(**hmap)
+                self.__request = PaymentPayloadDTO(**hmap) # convert hashmap to Payment DTO
+                self.__transaction.update(True, self.__request_type)  # update transaction to be valid
             except:
                 raise Exception(INPUT_FORMAT_ERROR,tokens)
         elif self.__request_type == commandType.BALANCE:
             for param in range(1, commandType.BALANCE.value):
                 hmap[BALANCE_KEYS[param - 1]] = tokens[param]
             try:
-                self.__request = BalancePayloadDTO(**hmap)
+                self.__request = BalancePayloadDTO(**hmap) # convert hashmap to Balance DTO
+                self.__transaction.update(True, self.__request_type)  # update transaction to be valid
             except:
                 raise Exception(INPUT_FORMAT_ERROR,tokens)
 
     def getRequestDTO(self):
+        '''
+        :return: requestDTO
+        '''
         return self.__request

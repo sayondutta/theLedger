@@ -4,7 +4,6 @@ from src.dto.entities.loan import Loan
 from src.dto.entities.payment import Payment
 
 class Testmain(unittest.TestCase):
-    # more tests to be added
 
     def test_loan(self):
         p,t,r = 10000,4,10
