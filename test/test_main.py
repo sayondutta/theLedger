@@ -29,7 +29,7 @@ class Testmain(unittest.TestCase):
         amount_repaid, emisLeft = myloan.getBalance(15)
         self.assertEqual([4380,33],[amount_repaid,emisLeft])
 
-    def test_paymentBalance2(self):
+    def test_paymentBalance3(self):
         p, t, r = 10000, 4, 10
         myloan = Loan(p, t, r)
         payment_1 = Payment(10000)
