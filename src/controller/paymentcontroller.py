@@ -28,4 +28,4 @@ class PaymentController(BaseController):
             self._storage.addPayment(payment)
             loanObject.addPayment(request.amount,request.emi_no)
         else:
-            print(ZERO_EMIS_LEFT)
+            print(ZERO_EMIS_LEFT,request.__dict__)
