@@ -3,7 +3,6 @@ from src.dto.entities.transaction import Transaction
 from src.util.constants import INPUT_FORMAT_ERROR, LOAN_KEYS, PAYMENT_KEYS, BALANCE_KEYS
 from src.dto.payload.payload import LoanPayloadDTO, PaymentPayloadDTO, BalancePayloadDTO
 
-
 class QueryParser:
     def __init__(self, request, storage):
         self.__transaction = Transaction(request)

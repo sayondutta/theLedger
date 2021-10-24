@@ -6,6 +6,9 @@ from src.controller.loancontroller import LoanController
 from src.controller.paymentcontroller import PaymentController
 from src.controller.balancecontroller import BalanceController
 
+import sys
+sys.tracebacklimit = 0
+
 def start():
     storage = Storage()
 
