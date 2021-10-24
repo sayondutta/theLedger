@@ -15,7 +15,7 @@ def start():
 
     f = open(INPUT_FILE,'r')
     while True:
-        request = f.readline()
+        request = f.readline().rstrip()
         if len(request)==0:
             f.close()
             break

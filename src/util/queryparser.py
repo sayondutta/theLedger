@@ -19,7 +19,7 @@ class QueryParser:
             self.__transaction.update(True, self.__request_type)
             self.__payloadDTO(tokens)
         else:
-            raise ValueError(f"{INPUT_FORMAT_ERROR}: {request}")
+            raise Exception(INPUT_FORMAT_ERROR,request)
 
     def getType(self):
         return self.__request_type
@@ -29,15 +29,24 @@ class QueryParser:
         if self.__request_type == commandType.LOAN:
             for param in range(1, commandType.LOAN.value):
                 hmap[LOAN_KEYS[param - 1]] = tokens[param]
-            self.__request = LoanPayloadDTO(**hmap)
+            try:
+                self.__request = LoanPayloadDTO(**hmap)
+            except:
+                raise Exception(INPUT_FORMAT_ERROR,tokens)
         elif self.__request_type == commandType.PAYMENT:
             for param in range(1, commandType.PAYMENT.value):
                 hmap[PAYMENT_KEYS[param - 1]] = tokens[param]
-            self.__request = PaymentPayloadDTO(**hmap)
+            try:
+                self.__request = PaymentPayloadDTO(**hmap)
+            except:
+                raise Exception(INPUT_FORMAT_ERROR,tokens)
         elif self.__request_type == commandType.BALANCE:
             for param in range(1, commandType.BALANCE.value):
                 hmap[BALANCE_KEYS[param - 1]] = tokens[param]
-            self.__request = BalancePayloadDTO(**hmap)
+            try:
+                self.__request = BalancePayloadDTO(**hmap)
+            except:
+                raise Exception(INPUT_FORMAT_ERROR,tokens)
 
     def getRequestDTO(self):
         return self.__request

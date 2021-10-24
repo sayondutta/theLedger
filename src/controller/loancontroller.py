@@ -27,7 +27,7 @@ class LoanController(BaseController):
 
         userObject = self._storage.getUserObject(userID)
         if userObject.hasLoanInBank(bankID):
-            raise ValueError(LOAN_ALREADY_IN_THE_BANK)
+            raise Exception(LOAN_ALREADY_IN_THE_BANK,request.__dict__)
 
         # create loan object
         loan = Loan(request.principal, request.years, request.rate)
